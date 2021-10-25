@@ -2,13 +2,13 @@
 
 ![UdaSecurity Logo](UdaSecurity.png)
 
-Your company, **Udasecurity**, has created a home security application. This application tracks the status of sensors, monitors camera input, and changes the alarm state of the system based on inputs. Users can arm the system for when they’re home or away as well as disarm the system.
+Your company, **Udasecurity**, has created a home security com.udacity.catpoint.com.udacity.catpoint.application.application. This com.udacity.catpoint.com.udacity.catpoint.application.application tracks the status of sensors, monitors camera input, and changes the alarm state of the system based on inputs. Users can arm the system for when they’re home or away as well as disarm the system.
 
-The wild success of your application means that you have to prepare to scale your software. You’ll need to write unit tests for all of the major operations the application performs so that you can safely make more changes in the future. You also need to use maven to streamline the build process and automate your tests and code analysis. More urgently, you need to make sure your application actually does what it’s supposed to do, and so one of writing thorough unit tests will help you find any bugs that already exist.
+The wild success of your com.udacity.catpoint.com.udacity.catpoint.application.application means that you have to prepare to scale your software. You’ll need to write unit tests for all of the major operations the com.udacity.catpoint.com.udacity.catpoint.application.application performs so that you can safely make more changes in the future. You also need to use maven to streamline the build process and automate your tests and code analysis. More urgently, you need to make sure your com.udacity.catpoint.com.udacity.catpoint.application.application actually does what it’s supposed to do, and so one of writing thorough unit tests will help you find any bugs that already exist.
 
-The image analysis service used by this application has proven popular as well, and another team wants to use it in their project. To accomplish this, you must separate the Image Service from the program and package it as a separate module to be included both in your own project and in other projects.
+The image analysis com.udacity.catpoint.image used by this com.udacity.catpoint.com.udacity.catpoint.application.application has proven popular as well, and another team wants to use it in their project. To accomplish this, you must separate the Image Service from the program and package it as a separate module to be included both in your own project and in other projects.
 
-The end goal for this assignment is to split the project into multiple modules, refactor it to be unit-testable, write unit tests to cover all the main requirements for the Security portion of the application and fix any bugs that you find in the process. You’ll also update the build process to automatically run unit tests, perform static code analysis, and build the code into an executable jar file. 
+The end goal for this assignment is to split the project into multiple modules, refactor it to be unit-testable, write unit tests to cover all the main requirements for the Security portion of the com.udacity.catpoint.com.udacity.catpoint.application.application and fix any bugs that you find in the process. You’ll also update the build process to automatically run unit tests, perform static code analysis, and build the code into an executable jar file. 
 
 ## Section 1: Update `pom.xml` with Missing Dependencies
 This app was initially built by including jar files for each dependency manually, but now we are modernizing the dependency management by using Maven to manage our dependencies and their versions for us. 
@@ -26,7 +26,7 @@ Now that you have identified all the dependencies and can run the project, it’
 ### Splitting Things Up
 
 1. Use either maven or your IDE to create a new maven project that will be the parent project for the two modules you will be creating. 
-1. Inside of the parent project, create one module for your Security Security and one module for your Image service. (*Note: Use one parent pom at the top level and one child pom for each module.*)
+1. Inside of the parent project, create one module for your Security Security and one module for your Image com.udacity.catpoint.image. (*Note: Use one parent pom at the top level and one child pom for each module.*)
 1. Move all components into their proper modules.
 1. Update dependencies in the poms so that shared dependencies are in the parent pom, but unshared dependencies are in the child poms.
 1. Use the pluginManagement tag in the parent pom to set the latest versions for the core plugins used by the maven lifecycle, such as the maven-compiler-plugin.
@@ -42,15 +42,15 @@ You do **NOT** need to test the Image Service or the Repository, so you should u
 
 Each of the requirements below should be verified by one or more unit tests. All of these test the **Security Service**, so make sure your tests don't depend on the implementation of the Repository or the Image Service. *Remember, you can use ****`Mocks`**** to replace these services in your unit tests.*
 
-You should also write interfaces to describe the necessary behaviors of your dependencies to make them easier to Mock. We’re already using a SecurityRepository interface, but we have no interface to describe the behavior of our Image Service. Create an interface that makes it easy to test our application regardless of whether we’re using the `AwsImageService` or `FakeImageService`. 
+You should also write interfaces to describe the necessary behaviors of your dependencies to make them easier to Mock. We’re already using a SecurityRepository interface, but we have no interface to describe the behavior of our Image Service. Create an interface that makes it easy to test our com.udacity.catpoint.com.udacity.catpoint.application.application regardless of whether we’re using the `AwsImageService` or `FakeImageService`. 
 
 ### *Optional Stand Out Task:* Connect Your Project to the AWS Image Recognition Library
 
-> Once you have created an interface for your image service, complete the steps described in the AwsImageService to create credentials and provide them in a properties file for your application. Change the ImageService implementation class in the CatpointGui class to use the AwsImageService instead of the FakeImageService. Try submitting different types of images and see what comes back!
+> Once you have created an interface for your image com.udacity.catpoint.image, complete the steps described in the AwsImageService to create credentials and provide them in a properties file for your com.udacity.catpoint.com.udacity.catpoint.application.application. Change the ImageService implementation class in the CatpointGui class to use the AwsImageService instead of the FakeImageService. Try submitting different types of images and see what comes back!
 
 ![Image of the Gui](gui_1.png)
 
-**While you are writing tests, it's possible you may need to refactor the application in order to make all of the requirements testable.** For example, parts of the business logic may be contained in the GUI or repository classes. You may have to move this logic into the security service to be tested.
+**While you are writing tests, it's possible you may need to refactor the com.udacity.catpoint.com.udacity.catpoint.application.application in order to make all of the requirements testable.** For example, parts of the business logic may be contained in the GUI or repository classes. You may have to move this logic into the security com.udacity.catpoint.image to be tested.
 
 Remember, a failing unit test could mean one of two things:
 
@@ -73,7 +73,7 @@ Some of these requirements might not be properly implemented, so, even if you wr
 1. If the system is armed, reset all sensors to inactive.
 1. If the system is armed-home *while* the camera shows a cat, set the alarm status to alarm.
 
-*Reminder*: If you find yourself relying on the behavior of another service, you may want to consider using a Mock!
+*Reminder*: If you find yourself relying on the behavior of another com.udacity.catpoint.image, you may want to consider using a Mock!
 
 ## Section 4: Fix Any Bugs You Find With Your Unit Tests!
 As we stated in the previous section, a failing unit test could mean one of two things:
@@ -102,7 +102,7 @@ Use IntelliJ to check code coverage. Our goal is to cover everything in the Secu
 
 ![code coverage](code_coverage_1.png)
 
-**Your goal is to provide full coverage of all methods that implement the application requirements.** You don’t need to test trivial methods like getters or setters, but you do need to make sure that all the lines in your other methods are reachable by the unit tests.
+**Your goal is to provide full coverage of all methods that implement the com.udacity.catpoint.com.udacity.catpoint.application.application requirements.** You don’t need to test trivial methods like getters or setters, but you do need to make sure that all the lines in your other methods are reachable by the unit tests.
 
 ![code coverage](code_coverage_2.png)
 
@@ -110,12 +110,12 @@ Use IntelliJ to check code coverage. Our goal is to cover everything in the Secu
 
 > Create a FakeSecurityRepository class that works just like the `PretendDatabaseSecurityRepository` class (except without the property files). Create a second test class called `SecurityServiceIntegrationTest.java` and write methods that test our requirements as integration tests.
 
-> These tests can call service methods and then use JUnit Assertions to verify that the values you retrieve after performing operations are the expected values.
+> These tests can call com.udacity.catpoint.image methods and then use JUnit Assertions to verify that the values you retrieve after performing operations are the expected values.
 
 ## Section 6: Build the Application into an Executable JAR
-Update your `pom.xml` to use a maven plugin that allows you to compile your application into an executable JAR. Confirm that you can run the program by running the jar file. Execute the Maven goal that builds the JAR and start the application from the command line.
+Update your `pom.xml` to use a maven plugin that allows you to compile your com.udacity.catpoint.com.udacity.catpoint.application.application into an executable JAR. Confirm that you can run the program by running the jar file. Execute the Maven goal that builds the JAR and start the com.udacity.catpoint.com.udacity.catpoint.application.application from the command line.
 
-Submit a screenshot titled `executable_jar.png` that shows you running the executable jar from the command line and the application launching. Use the command `java -jar [yourjarname]` to run it.
+Submit a screenshot titled `executable_jar.png` that shows you running the executable jar from the command line and the com.udacity.catpoint.com.udacity.catpoint.application.application launching. Use the command `java -jar [yourjarname]` to run it.
 
 ![creating a jar file](jar.png)
 

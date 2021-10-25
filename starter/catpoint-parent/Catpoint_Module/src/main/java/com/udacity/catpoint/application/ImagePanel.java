@@ -59,7 +59,7 @@ public class ImagePanel extends JPanel implements StatusListener {
             repaint();
         });
 
-        //button that sends the image to the image service
+        //button that sends the image to the image com.udacity.catpoint.service
         JButton scanPictureButton = new JButton("Scan Picture");
         scanPictureButton.addActionListener(e -> {
             securityService.processImage(currentCameraImage);
