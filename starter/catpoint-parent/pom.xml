@@ -50,6 +50,7 @@
   <!--We moved this from the parent pom because this is the module from which we execute the application-->
   <!--Then we moved it back because of a mentor's post  https://knowledge.udacity.com/questions/515786-->
   <build>
+
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -66,10 +67,12 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
         </plugin>
+
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.0.0-M5</version>
         </plugin>
+
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
@@ -91,8 +94,36 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.1.1</version>
         </plugin>
+
+        <!--https://www.baeldung.com/executable-jar-with-maven-->
+        <plugin>
+          <!--<groupId>org.apache.maven.plugins</groupId>-->
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.3.0</version>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>single</goal>
+              </goals>
+              <configuration>
+                <archive>
+                  <manifest>
+                    <mainClass>
+                      com.udacity.catpoint.application.CatpointApp
+                    </mainClass>
+                  </manifest>
+                </archive>
+                <descriptorRefs>
+                  <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
+
   </build>
 
 </project>

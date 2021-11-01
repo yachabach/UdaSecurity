@@ -1,5 +1,6 @@
 package com.udacity.catpoint.application;
 
+import com.udacity.catpoint.data.AlarmStatus;
 import com.udacity.catpoint.data.Sensor;
 import com.udacity.catpoint.data.SensorType;
 import com.udacity.catpoint.service.SecurityService;
@@ -12,7 +13,7 @@ import javax.swing.*;
  * Panel that allows users to add sensors to their system. Sensors may be
  * manually set to "active" and "inactive" to test the system.
  */
-public class SensorPanel extends JPanel {
+public class SensorPanel extends JPanel implements StatusListener{
 
     private SecurityService securityService;
 
@@ -30,8 +31,12 @@ public class SensorPanel extends JPanel {
         super();
         setLayout(new MigLayout());
         this.securityService = securityService;
+        securityService.addStatusListener(this);
 
         panelLabel.setFont(StyleService.HEADING_FONT);
+
+        //addActionListener is a JPanel method.  It calls the addSensor
+        //method when the user wants a new sensor
         addNewSensorButton.addActionListener(e ->
                 addSensor(new Sensor(newSensorNameField.getText(),
                         SensorType.valueOf(newSensorTypeDropdown.getSelectedItem().toString()))));
@@ -40,6 +45,7 @@ public class SensorPanel extends JPanel {
         sensorListPanel = new JPanel();
         sensorListPanel.setLayout(new MigLayout());
 
+        //Delete all sensors and re-write them
         updateSensorList(sensorListPanel);
 
         add(panelLabel, "wrap");
@@ -115,6 +121,17 @@ public class SensorPanel extends JPanel {
      */
     private void removeSensor(Sensor sensor) {
         securityService.removeSensor(sensor);
+        updateSensorList(sensorListPanel);
+    }
+
+    @Override
+    public void catDetected(boolean cat){}
+
+    @Override
+    public void notify(AlarmStatus alarmStatus){}
+
+    @Override
+    public void sensorStatusChanged(){
         updateSensorList(sensorListPanel);
     }
 }

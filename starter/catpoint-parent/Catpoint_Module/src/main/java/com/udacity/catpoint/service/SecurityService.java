@@ -20,9 +20,12 @@ import java.util.Set;
  */
 public class SecurityService {
 
-    private FakeImageService imageService;
-    private SecurityRepository securityRepository;
-    private Set<StatusListener> statusListeners = new HashSet<>();
+    private final FakeImageService imageService;
+    private final SecurityRepository securityRepository;
+    private final Set<StatusListener> statusListeners = new HashSet<>();
+
+    //Added for Test 10
+    private boolean currentImageHasCat = false;
 
     public SecurityService(SecurityRepository securityRepository, FakeImageService imageService) {
         this.securityRepository = securityRepository;
@@ -37,8 +40,16 @@ public class SecurityService {
     public void setArmingStatus(ArmingStatus armingStatus) {
         if(armingStatus == ArmingStatus.DISARMED) {
             setAlarmStatus(AlarmStatus.NO_ALARM);
+        } else {
+            //reset all sensors
+            securityRepository.resetAllSensors(false);
+
+            if (currentImageHasCat){
+                setAlarmStatus(AlarmStatus.ALARM);
+            }
         }
         securityRepository.setArmingStatus(armingStatus);
+        statusListeners.forEach(StatusListener::sensorStatusChanged);
     }
 
     /**
@@ -52,12 +63,14 @@ public class SecurityService {
         } else {
             setAlarmStatus(AlarmStatus.NO_ALARM);
         }
-
+        //Remember if the image has a cat or not.
+        currentImageHasCat=cat;
         statusListeners.forEach(sl -> sl.catDetected(cat));
     }
 
     /**
-     * Register the StatusListener for alarm system updates from within the SecurityService.
+     * Register the StatusListener for alarm system updates from within the
+     * SecurityService.
      * @param statusListener
      */
     public void addStatusListener(StatusListener statusListener) {
@@ -78,7 +91,8 @@ public class SecurityService {
     }
 
     /**
-     * Internal method for updating the alarm status when a sensor has been activated.
+     * Internal method for updating the alarm status when a sensor has been
+     * activated by the user.
      */
     private void handleSensorActivated() {
         if(securityRepository.getArmingStatus() == ArmingStatus.DISARMED) {
@@ -91,33 +105,53 @@ public class SecurityService {
     }
 
     /**
-     * Internal method for updating the alarm status when a sensor has been deactivated
+     * Internal method for updating the alarm status when a sensor has
+     * been deactivated by the user
      */
+
     private void handleSensorDeactivated() {
-        switch(securityRepository.getAlarmStatus()) {
-            case PENDING_ALARM -> setAlarmStatus(AlarmStatus.NO_ALARM);
+
+        if ((securityRepository.getAlarmStatus() == AlarmStatus.PENDING_ALARM)
+                && (!securityRepository.isAnySensorActive()))
+            setAlarmStatus(AlarmStatus.NO_ALARM);
+
+        /*switch(securityRepository.getAlarmStatus()) {
+            case PENDING_ALARM ->  setAlarmStatus(AlarmStatus.NO_ALARM);
             case ALARM -> setAlarmStatus(AlarmStatus.PENDING_ALARM);
-        }
+        }*/
     }
 
     /**
-     * Change the activation status for the specified sensor and update alarm status if necessary.
+     * Change the activation status for the specified sensor and update alarm
+     * status if necessary.  This function is called when a user toggles
+     * the Activate/Deactivate button on the Sensor Management panel.  It
+     * has nothing to do with a sensor activated by a cat.
      * @param sensor
      * @param active
      */
     public void changeSensorActivationStatus(Sensor sensor, Boolean active) {
+
+        /*
+        Update alarm status by comparing current state to previously saved
+        sensor state.  sensor.getActive() returns the state of the sensor after
+        the last change.  The current near-real-time state of the sensor
+        is in the variable "active" passed to this method.
+         */
         if(!sensor.getActive() && active) {
-            handleSensorActivated();
+            sensor.setActive(true);   //Status chosen by user
+            handleSensorActivated();    //by user
         } else if (sensor.getActive() && !active) {
-            handleSensorDeactivated();
+            sensor.setActive(false);    //Need this to handle no active sensors
+            handleSensorDeactivated();  //by user
         }
-        sensor.setActive(active);
-        securityRepository.updateSensor(sensor);
+
+        securityRepository.updateSensor(sensor);    //...in the JSON file
     }
 
     /**
-     * Send an image to the SecurityService for processing. The securityService will use its provided
-     * ImageService to analyze the image for cats and update the alarm status accordingly.
+     * Send an image to the SecurityService for processing. The
+     * securityService will use it's provided ImageService to analyze the
+     * image for cats and update the alarm status accordingly.
      * @param currentCameraImage
      */
     public void processImage(BufferedImage currentCameraImage) {

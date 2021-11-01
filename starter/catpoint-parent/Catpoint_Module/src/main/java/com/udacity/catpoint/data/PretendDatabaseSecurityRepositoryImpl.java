@@ -56,6 +56,8 @@ public class PretendDatabaseSecurityRepositoryImpl implements SecurityRepository
         prefs.put(SENSORS, gson.toJson(sensors));
     }
 
+    //This updates the status of the sensor in the JSON file. It has nothing
+    //to do with updating the status of the sensor itself.
     @Override
     public void updateSensor(Sensor sensor) {
         sensors.remove(sensor);
@@ -89,4 +91,21 @@ public class PretendDatabaseSecurityRepositoryImpl implements SecurityRepository
     public ArmingStatus getArmingStatus() {
         return armingStatus;
     }
+
+    //Method added for SecurityService
+    @Override
+    public boolean isAnySensorActive(){
+        for (Sensor s:sensors) {if (s.getActive()) {return true;}}
+        return false;
+    }
+
+    //Method added for SecurityService
+    @Override
+    public void resetAllSensors(boolean active){
+        for (Sensor s:sensors) {
+            s.setActive(active);
+        }
+    }
 }
+
+
