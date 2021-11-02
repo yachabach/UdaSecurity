@@ -72,6 +72,13 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-maven-plugin</artifactId>
+      <version>4.4.2.1</version>
+      <type>maven-plugin</type>
+    </dependency>
+
   </dependencies>
 
   <!--We moved this from the parent pom because this is the module from which we execute the application-->
@@ -171,9 +178,20 @@
             </execution>
           </executions>
         </plugin>
+
       </plugins>
     </pluginManagement>
 
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>4.4.1</version>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>
