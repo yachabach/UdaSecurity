@@ -45,6 +45,33 @@
       <scope>test</scope>
     </dependency>
 
+    <!--https://maven.apache.org/surefire/dependency-info.html-->
+    <dependency>
+      <groupId>org.apache.maven.surefire</groupId>
+      <artifactId>surefire</artifactId>
+      <version>3.0.0-M5</version>
+      <type>pom</type>
+    </dependency>
+
+    <!--https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter/4.0.0-->
+    <!--Unit tests only in Catpoint_Module-->
+    <!--Moved here because tests were failing-->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>4.0.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!--https://mvnrepository.com/artifact/org.mockito/mockito-inline/4.0.0-->
+    <!--On the advice of https://knowledge.udacity.com/questions/656069-->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>4.0.0</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <!--We moved this from the parent pom because this is the module from which we execute the application-->
@@ -57,19 +84,42 @@
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
+          <executions>
+            <execution>
+              <id>auto-clean</id>
+              <phase>initialize</phase>
+              <goals>
+                <goal>clean</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
         </plugin>
+
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
+          <version>3.8.1</version>
+          <configuration>
+            <source>16</source>
+            <target>16</target>
+          </configuration>
         </plugin>
 
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
+          <!--On the advice of https://knowledge.udacity.com/questions/725133-->
+          <configuration>
+            <argLine>
+              --add-opens Catpoint.Module/com.udacity.catpoint.service=ALL-UNNAMED
+            </argLine>
+          </configuration>
           <version>3.0.0-M5</version>
         </plugin>
 
