@@ -5,7 +5,7 @@
 
 # Maven
 log/
-target/
+#target/ - Udacity wants this
 
 # Java
 config.properties

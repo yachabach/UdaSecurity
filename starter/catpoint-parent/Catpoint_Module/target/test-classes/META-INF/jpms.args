@@ -1,0 +1,4 @@
+--patch-module
+Catpoint.Module=_
+--add-reads
+Catpoint.Module=ALL-UNNAMED
