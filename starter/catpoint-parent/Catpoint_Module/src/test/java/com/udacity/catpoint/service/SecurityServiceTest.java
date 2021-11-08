@@ -185,7 +185,7 @@ class SecurityServiceTest {
     put the system into alarm status.
      */
     @ParameterizedTest(name = "[{index}] Arming Status: {0} ")
-    @DisplayName("Test 7: DISARMED or ARMED_AWAY sets NO_ALARM; ARMED_HOME sets ALARM")
+    @DisplayName("Test 7: DISARMED or ARMED_AWAY no change; ARMED_HOME sets ALARM")
     @EnumSource(ArmingStatus.class)
     void camera_detects_cat_with_ARMED_HOME(ArmingStatus armingStatus) {
 
@@ -200,7 +200,7 @@ class SecurityServiceTest {
             case ARMED_HOME->
                     verify(securityRepository).setAlarmStatus(AlarmStatus.ALARM);
             case DISARMED, ARMED_AWAY ->
-                verify(securityRepository).setAlarmStatus(AlarmStatus.NO_ALARM);
+                verify(securityRepository, never()).setAlarmStatus(any());
         }
     }
 
@@ -209,7 +209,7 @@ class SecurityServiceTest {
     the sensors are not active.
      */
     @Test
-    @DisplayName("Test 8: No cat in image sets NO_ALARM")
+    @DisplayName("Test 8: No cat image and no active sensors leaves NO_ALARM")
     void no_cat_detected_set_NO_ALARM() {
 
         //Need a BufferedImage object to send to processImage; image finds a cat
@@ -218,7 +218,7 @@ class SecurityServiceTest {
 
         //Check for a cat - response will be false
         securityService.processImage(img);
-        verify(securityRepository).setAlarmStatus(AlarmStatus.NO_ALARM);
+        verify(securityRepository, never()).setAlarmStatus(any());
     }
 
     /*

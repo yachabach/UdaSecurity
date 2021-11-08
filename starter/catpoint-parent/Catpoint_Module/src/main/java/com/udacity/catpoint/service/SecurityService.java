@@ -61,7 +61,11 @@ public class SecurityService {
         if(cat && getArmingStatus() == ArmingStatus.ARMED_HOME) {
             setAlarmStatus(AlarmStatus.ALARM);
         } else {
-            setAlarmStatus(AlarmStatus.NO_ALARM);
+
+            //Should already be in NO_ALARM with no sensors active
+            //Should not change anything with PENDING_ALARM or ALARM
+            //Unit test will make sure we don't call anything
+            //setAlarmStatus(AlarmStatus.NO_ALARM);
         }
         //Remember if the image has a cat or not.
         currentImageHasCat=cat;
