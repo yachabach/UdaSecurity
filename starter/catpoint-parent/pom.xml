@@ -28,6 +28,24 @@
   <dependencies>
     <!-- add your dependencies here! -->
     <!--Required by both modules-->
+
+    <!--https://maven.apache.org/surefire/dependency-info.html-->
+    <dependency>
+      <groupId>org.apache.maven.surefire</groupId>
+      <artifactId>surefire</artifactId>
+      <version>3.0.0-M5</version>
+      <type>pom</type>
+    </dependency>
+
+    <!--Image service came with an App test so all testing is in the parent pom-->
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.8.1 -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -43,14 +61,6 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>5.8.1</version>
       <scope>test</scope>
-    </dependency>
-
-    <!--https://maven.apache.org/surefire/dependency-info.html-->
-    <dependency>
-      <groupId>org.apache.maven.surefire</groupId>
-      <artifactId>surefire</artifactId>
-      <version>3.0.0-M5</version>
-      <type>pom</type>
     </dependency>
 
     <!--https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter/4.0.0-->
@@ -71,6 +81,7 @@
       <version>4.0.0</version>
       <scope>test</scope>
     </dependency>
+
 
     <dependency>
       <groupId>com.github.spotbugs</groupId>
