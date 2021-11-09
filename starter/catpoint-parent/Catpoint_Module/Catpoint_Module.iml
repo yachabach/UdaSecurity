@@ -13,16 +13,16 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ImageService_Module" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.32" level="project" />
-    <orderEntry type="library" name="Maven: software.amazon.awssdk:auth:2.17.61" level="project" />
-    <orderEntry type="library" name="Maven: software.amazon.awssdk:annotations:2.17.61" level="project" />
-    <orderEntry type="library" name="Maven: software.amazon.awssdk:utils:2.17.61" level="project" />
+    <orderEntry type="library" name="Maven: software.amazon.awssdk:auth:2.17.71" level="project" />
+    <orderEntry type="library" name="Maven: software.amazon.awssdk:annotations:2.17.71" level="project" />
+    <orderEntry type="library" name="Maven: software.amazon.awssdk:utils:2.17.71" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: software.amazon.awssdk:sdk-core:2.17.61" level="project" />
-    <orderEntry type="library" name="Maven: software.amazon.awssdk:regions:2.17.61" level="project" />
-    <orderEntry type="library" name="Maven: software.amazon.awssdk:profiles:2.17.61" level="project" />
-    <orderEntry type="library" name="Maven: software.amazon.awssdk:http-client-spi:2.17.61" level="project" />
-    <orderEntry type="library" name="Maven: software.amazon.awssdk:json-utils:2.17.61" level="project" />
-    <orderEntry type="library" name="Maven: software.amazon.awssdk:third-party-jackson-core:2.17.61" level="project" />
+    <orderEntry type="library" name="Maven: software.amazon.awssdk:sdk-core:2.17.71" level="project" />
+    <orderEntry type="library" name="Maven: software.amazon.awssdk:regions:2.17.71" level="project" />
+    <orderEntry type="library" name="Maven: software.amazon.awssdk:profiles:2.17.71" level="project" />
+    <orderEntry type="library" name="Maven: software.amazon.awssdk:http-client-spi:2.17.71" level="project" />
+    <orderEntry type="library" name="Maven: software.amazon.awssdk:json-utils:2.17.71" level="project" />
+    <orderEntry type="library" name="Maven: software.amazon.awssdk:third-party-jackson-core:2.17.71" level="project" />
     <orderEntry type="library" name="Maven: software.amazon.eventstream:eventstream:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: software.amazon.awssdk:rekognition:2.17.65" level="project" />
     <orderEntry type="library" name="Maven: software.amazon.awssdk:aws-json-protocol:2.17.65" level="project" />
@@ -51,7 +51,7 @@
     <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotations:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.j2objc:j2objc-annotations:1.3" level="project" />
     <orderEntry type="library" name="Maven: com.miglayout:miglayout:3.7.4" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.8" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-params:5.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.8.1" level="project" />
@@ -65,7 +65,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy-agent:1.11.19" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.objenesis:objenesis:3.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-inline:4.0.0" level="project" />
-    <orderEntry type="library" name="Maven: com.github.spotbugs:spotbugs-maven-plugin:maven-plugin:4.4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.spotbugs:spotbugs-maven-plugin:maven-plugin:4.4.2.2" level="project" />
     <orderEntry type="library" name="Maven: com.github.spotbugs:spotbugs:4.4.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.bcel:bcel:6.5.0" level="project" />
     <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
@@ -76,8 +76,8 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: net.sf.saxon:Saxon-HE:10.6" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:2.0.0-alpha5" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:2.0.0-alpha5" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.ant:ant:1.10.11" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.ant:ant-launcher:1.10.11" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ant:ant:1.10.12" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ant:ant-launcher:1.10.12" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.groovy:groovy:indy:3.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.groovy:groovy-ant:indy:3.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.groovy:groovy-dateutil:indy:3.0.9" level="project" />
